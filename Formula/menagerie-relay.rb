@@ -5,28 +5,28 @@
 class MenagerieRelay < Formula
   desc "Relay for Menagerie, the browser-native console for fleets of coding agents"
   homepage "https://github.com/NakliTechie/menagerie"
-  version "0.2.0"
+  version "0.3.0"
   license "AGPL-3.0-or-later"
 
   on_macos do
     on_arm do
-      url "https://github.com/NakliTechie/menagerie/releases/download/relay-v0.2.0/menagerie-relay-darwin-arm64"
-      sha256 "55e0e5c1374d364d511bd2bc053afaad70b0402868681d0a60ac3bfe424a4e9b"
+      url "https://github.com/NakliTechie/menagerie/releases/download/relay-v0.3.0/menagerie-relay-darwin-arm64"
+      sha256 "715178c0260a827fed3fc53d6305ebf0aee2f0a5db4b9b33a437bf0ad45478a3"
     end
     on_intel do
-      url "https://github.com/NakliTechie/menagerie/releases/download/relay-v0.2.0/menagerie-relay-darwin-amd64"
-      sha256 "94191c4ce2682fc025afed7ee3b317dc985ad9ef56c20073ebf7f460364b3fe8"
+      url "https://github.com/NakliTechie/menagerie/releases/download/relay-v0.3.0/menagerie-relay-darwin-amd64"
+      sha256 "d9d84908a9df71882cf113a9d124aad2a39b110c3420292e87b168d70f1a60eb"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/NakliTechie/menagerie/releases/download/relay-v0.2.0/menagerie-relay-linux-arm64"
-      sha256 "aafce51b418e705991fe2a83df51dfd7ce963b68391b777bd19c428f652ee496"
+      url "https://github.com/NakliTechie/menagerie/releases/download/relay-v0.3.0/menagerie-relay-linux-arm64"
+      sha256 "42e433bcbbd3bbdb8db8d2a551faf96f799e59c71f0f05062fd060701a6438ba"
     end
     on_intel do
-      url "https://github.com/NakliTechie/menagerie/releases/download/relay-v0.2.0/menagerie-relay-linux-amd64"
-      sha256 "21dc33c11a84113ad81c03dc4809981f27bc432fc316eaa6dec2980b1620e142"
+      url "https://github.com/NakliTechie/menagerie/releases/download/relay-v0.3.0/menagerie-relay-linux-amd64"
+      sha256 "71c679cc1f817a9d79c4e79da486df9e621d4cd8c53351adb8203bbe81a6d9c7"
     end
   end
 
