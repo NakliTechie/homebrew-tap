@@ -1,6 +1,16 @@
 # NakliTechie Homebrew tap
 
-Homebrew formulae for [NakliTechie](https://github.com/NakliTechie) tools.
+Homebrew formulae and casks for [NakliTechie](https://github.com/NakliTechie) tools.
+
+## summon
+
+[Summon](https://github.com/NakliTechie/summon) — a sovereign, native macOS launcher (no account, no server, no telemetry) with on-device AI.
+
+```sh
+brew install --cask naklitechie/tap/summon
+```
+
+The 0.6.x build is ad-hoc signed (not yet Apple-notarized); the cask clears the download quarantine so it launches normally. Requires macOS Sonoma (14)+; on-device AI needs Apple Intelligence hardware (macOS 26+).
 
 ## menagerie-relay
 
