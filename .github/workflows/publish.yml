@@ -52,6 +52,8 @@ jobs:
       # The same gate the files passed by hand the first time. `brew style` is enough of a
       # linter to catch a stanza the DSL has since moved on from; audit needs a tapped
       # checkout and the release assets, which the app's own workflow already exercised.
+      # The ubuntu image no longer carries brew; Homebrew's own action installs it.
+      - uses: Homebrew/actions/setup-homebrew@master
       - name: lint what arrived
         run: |
           ls -R incoming
