@@ -46,3 +46,32 @@ continuum service install --listen 127.0.0.1:7878 # always-on (launchd / systemd
 ```
 
 Prebuilt archive, no Go toolchain, fetched with curl so macOS never quarantines it. `continuum legacy serve` is the `menagerie-relay` entry point inside the same binary; the separate `menagerie-relay` formula still installs the standalone relay.
+
+## Publishing from an app's release workflow
+
+An app renders its own `Formula/<name>.rb` / `Casks/<name>.rb`, uploads them as an artifact,
+and calls `.github/workflows/publish.yml` here, which lints them with `brew style` and
+commits. Each app has its own write deploy key on this repo, stored in that app's secrets as
+`HOMEBREW_TAP_DEPLOY_KEY`. To add an app:
+
+```sh
+ssh-keygen -t ed25519 -N "" -C "<app>-release → homebrew-tap" -f <app>-tap-key
+gh repo deploy-key add <app>-tap-key.pub --repo NakliTechie/homebrew-tap --allow-write --title "<app> release"
+gh secret set HOMEBREW_TAP_DEPLOY_KEY --repo NakliTechie/<app> < <app>-tap-key
+rm <app>-tap-key <app>-tap-key.pub
+```
+
+Then in the app's release workflow, after the release exists:
+
+```yaml
+  publish-tap:
+    needs: release
+    uses: NakliTechie/homebrew-tap/.github/workflows/publish.yml@main
+    with:
+      artifact: homebrew
+      message: "<app> ${{ github.ref_name }}"
+    secrets:
+      deploy_key: ${{ secrets.HOMEBREW_TAP_DEPLOY_KEY }}
+```
+
+[ferrule](https://github.com/NakliTechie/ferrule/blob/main/.github/workflows/release.yml) is the reference caller; its `make brew` renders from the release's `SHA256SUMS`.

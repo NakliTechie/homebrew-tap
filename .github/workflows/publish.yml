@@ -1,0 +1,76 @@
+# Reusable: an app's release workflow renders its formula and/or cask, uploads them as an
+# artifact, and calls this to land them in the tap. The app owns what its files say; the
+# tap owns how they get committed. One deploy key per app, write-scoped to this repo only,
+# so a compromised app repo can reach the tap and nothing else, and one app's key can be
+# revoked without touching the others.
+#
+# Caller:
+#   publish-tap:
+#     needs: release
+#     uses: NakliTechie/homebrew-tap/.github/workflows/publish.yml@main
+#     with:
+#       artifact: homebrew          # contains Formula/*.rb and/or Casks/*.rb
+#       message: "ferrule 1.1.0"
+#     secrets:
+#       deploy_key: ${{ secrets.HOMEBREW_TAP_DEPLOY_KEY }}
+name: publish
+
+on:
+  workflow_call:
+    inputs:
+      artifact:
+        description: Artifact holding Formula/ and/or Casks/ to copy into the tap
+        required: true
+        type: string
+      message:
+        description: Commit message, normally "<name> <version>"
+        required: true
+        type: string
+    secrets:
+      deploy_key:
+        description: Private half of a write deploy key on NakliTechie/homebrew-tap
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: NakliTechie/homebrew-tap
+          ssh-key: ${{ secrets.deploy_key }}
+          path: tap
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: ${{ inputs.artifact }}
+          path: incoming
+
+      # The same gate the files passed by hand the first time. `brew style` is enough of a
+      # linter to catch a stanza the DSL has since moved on from; audit needs a tapped
+      # checkout and the release assets, which the app's own workflow already exercised.
+      - name: lint what arrived
+        run: |
+          ls -R incoming
+          brew style incoming
+
+      - name: commit and push
+        working-directory: tap
+        run: |
+          cp -R ../incoming/. .
+          git add -A
+          if git diff --cached --quiet; then
+            echo "tap already carries these files; nothing to commit"
+            # Still touch the remote so a broken key fails here, not on the next release.
+            git ls-remote --exit-code origin HEAD > /dev/null
+            exit 0
+          fi
+          git config user.name "release bot"
+          git config user.email "dev@nakli.tech"
+          git commit -m "${{ inputs.message }}"
+          # Two apps releasing in the same minute both push here; take theirs, then ours.
+          git pull --rebase origin main
+          git push origin HEAD:main
