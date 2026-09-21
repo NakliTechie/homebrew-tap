@@ -53,7 +53,7 @@ jobs:
       # linter to catch a stanza the DSL has since moved on from; audit needs a tapped
       # checkout and the release assets, which the app's own workflow already exercised.
       # The ubuntu image no longer carries brew; Homebrew's own action installs it.
-      - uses: Homebrew/actions/setup-homebrew@master
+      - uses: Homebrew/actions/setup-homebrew@main
       - name: lint what arrived
         run: |
           ls -R incoming
