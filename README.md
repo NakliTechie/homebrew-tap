@@ -12,6 +12,17 @@ brew install --cask naklitechie/tap/summon
 
 The 0.6.x build is ad-hoc signed (not yet Apple-notarized); the cask clears the download quarantine so it launches normally. Requires macOS Sonoma (14)+; on-device AI needs Apple Intelligence hardware (macOS 26+).
 
+## ferrule
+
+[Ferrule](https://github.com/NakliTechie/ferrule) — every LLM key held once, encrypted, on your machine, with one OpenAI-compatible endpoint on top that your whole house can use. No account, no server, no telemetry.
+
+```sh
+brew install --cask naklitechie/tap/ferrule   # Ferrule.app (Apple Silicon): starts the daemon, opens the panel
+brew install naklitechie/tap/ferrule          # the `ferrule` command (macOS arm64/Intel, Linux)
+```
+
+The app is not notarised; the cask clears the download quarantine and says so. The formula is the prebuilt binary, fetched with curl so it is never quarantined. Both are rendered from the release's `SHA256SUMS` by `make brew` in the ferrule repo.
+
 ## menagerie-relay
 
 The relay for [Menagerie](https://github.com/NakliTechie/menagerie) — the browser-native console for fleets of coding agents.
