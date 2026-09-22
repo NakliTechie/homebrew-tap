@@ -3,7 +3,7 @@ class Verdict < Formula
   homepage "https://github.com/NakliTechie/verdict"
   url "https://github.com/NakliTechie/verdict/releases/download/v0.1.0/verdict-0.1.0-arm64-apple-darwin.tar.gz"
   version "0.1.0"
-  sha256 "6edc27b6033f5aa472457757691337d304d9e1112df212dc100f14622a155855"
+  sha256 "8e31c5a6e7e8b121fee3972730f3301cf503fa2c8f5b5f88ea3d39af993b4d3c"
   license "MIT"
 
   # verdict runs the on-device Apple Foundation Model: Apple Silicon + macOS 26 (Tahoe) only.
