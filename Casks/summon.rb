@@ -13,8 +13,8 @@
 # Local dry-run: `make cask-local` injects a file:// url + the local zip's sha256.
 
 cask "summon" do
-  version "0.7.0"
-  sha256 "1dd45d24b6d60551e82f4a7bec5113024efd20f4271176e4e2c3e07da90c4238"
+  version "0.8.0"
+  sha256 "7d4b4a0bb2f73aa51a62f18df5f590d6f0d5469ea00c7d119733a1d330fc623a"
 
   url "https://github.com/NakliTechie/summon/releases/download/v#{version}/Summon-#{version}.zip"
   name "Summon"
@@ -25,12 +25,18 @@ cask "summon" do
 
   app "Summon.app"
 
-  # v0.6.x is ad-hoc signed, not notarized: clear the download quarantine so the
-  # app launches without a Gatekeeper block. Remove once a notarized build ships.
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-dr", "com.apple.quarantine", "#{appdir}/Summon.app"]
+  # This build is ad-hoc signed, not notarized: clear the download quarantine so
+  # the app launches without a Gatekeeper block. Remove once a notarized build
+  # ships. Declarative form (Homebrew 7 `brew style` rejects the legacy
+  # `postflight do … end`); `{{appdir}}` is an install-time token, not Ruby.
+  postflight_steps do
+    run "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "{{appdir}}/Summon.app"]
   end
+
+  zap trash: [
+    "~/Library/Application Support/Summon",
+    "~/Library/Preferences/tech.nakli.Summon.plist",
+  ]
 
   caveats <<~EOS
     Summon #{version} is ad-hoc signed, not Apple-notarized. It is safe to run, but
@@ -38,9 +44,4 @@ cask "summon" do
     right-click → Open, or run:
       xattr -dr com.apple.quarantine "#{appdir}/Summon.app"
   EOS
-
-  zap trash: [
-    "~/Library/Application Support/Summon",
-    "~/Library/Preferences/tech.nakli.Summon.plist",
-  ]
 end
