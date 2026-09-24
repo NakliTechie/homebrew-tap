@@ -17,23 +17,23 @@ class Ferrule < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/NakliTechie/ferrule/releases/download/v1.1.0/ferrule-darwin-arm64"
-      sha256 "4f78a0958e7f7523284e8dc8541298368a8e8d7bbe10a5e3363022884e4f4bf0"
+      url "https://github.com/NakliTechie/ferrule/releases/download/v1.2.0/ferrule-darwin-arm64"
+      sha256 "437d55b83bbdcaa42aaba477f213479b52871524e74bd88135ac301f57b2c726"
     end
     on_intel do
-      url "https://github.com/NakliTechie/ferrule/releases/download/v1.1.0/ferrule-darwin-amd64"
-      sha256 "31342f9ad9843b851eeae5c055e88f7f9dbb2e6350468a0deb8fb1bd513cbb5e"
+      url "https://github.com/NakliTechie/ferrule/releases/download/v1.2.0/ferrule-darwin-amd64"
+      sha256 "943f88007d51be7249dd688ccff98162985b227de81dd2a373f2680f8bda0c56"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/NakliTechie/ferrule/releases/download/v1.1.0/ferrule-linux-arm64"
-      sha256 "114253fd5533f93dd4d70614a48faf1c732f2a0eede560124e194f476756067d"
+      url "https://github.com/NakliTechie/ferrule/releases/download/v1.2.0/ferrule-linux-arm64"
+      sha256 "cb582abc63a710b90d6bef5189727f54dfd28ca70563b0b96de3524e922ecf82"
     end
     on_intel do
-      url "https://github.com/NakliTechie/ferrule/releases/download/v1.1.0/ferrule-linux-amd64"
-      sha256 "a791605c54c16121e9e350f028afeb5a5c890b2ffb564403afca26cc21320f03"
+      url "https://github.com/NakliTechie/ferrule/releases/download/v1.2.0/ferrule-linux-amd64"
+      sha256 "fdfdcad61a1f873886c7793c8f0066d411f03485b8b6786d9b50b1549133e3e0"
     end
   end
 
