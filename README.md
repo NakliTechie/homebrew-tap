@@ -75,3 +75,13 @@ Then in the app's release workflow, after the release exists:
 ```
 
 [ferrule](https://github.com/NakliTechie/ferrule/blob/main/.github/workflows/release.yml) is the reference caller; its `make brew` renders from the release's `SHA256SUMS`.
+
+## disktree-cli
+
+[disktree-cli](https://github.com/NakliTechie/disktree) — [tobi/disktree](https://github.com/tobi/disktree)'s scanner, classifier and removal guards without a window, for scripts and coding agents. Every command prints JSON; `trash` is the only way it removes anything. The fork adds model-weight and stale-archive findings and a `--store` for a model store.
+
+```sh
+brew install naklitechie/tap/disktree-cli
+```
+
+Prebuilt for macOS arm64 and Intel, ad-hoc signed. Linux: `cargo install --git https://github.com/NakliTechie/disktree disktree-cli`.
