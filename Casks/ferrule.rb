@@ -9,8 +9,8 @@
 # and nothing more, so the postflight clears the download quarantine and the caveats say
 # so. The CLI on its own, and Intel Macs, are the formula of the same name.
 cask "ferrule" do
-  version "1.2.0"
-  sha256 "8a93aa6dc6570533a8c3da7bfbd130fc9a695b0327fed182898d9e91e79c2781"
+  version "1.2.1"
+  sha256 "0134772f5069e0aa63522f25eb0a620b4ee37c1ba37aa7dd524d180d10a7fa8d"
 
   url "https://github.com/NakliTechie/ferrule/releases/download/v#{version}/Ferrule-macos.zip"
   name "Ferrule"
