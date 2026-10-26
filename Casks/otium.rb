@@ -22,7 +22,7 @@ cask "otium" do
   end
 
   depends_on arch: :arm64
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "Otium.app"
 
@@ -34,10 +34,10 @@ cask "otium" do
             quit:      "ai.otium.app"
 
   zap trash: [
-    "~/Library/Application Support/Otium",
-    "~/Library/Application Support/ai.otium.app",
-    "~/Library/LaunchAgents/ai.otium.app.plist",
     "~/.otium",
+    "~/Library/Application Support/ai.otium.app",
+    "~/Library/Application Support/Otium",
+    "~/Library/LaunchAgents/ai.otium.app.plist",
   ]
 
   caveats <<~EOS
