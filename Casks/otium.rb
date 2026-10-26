@@ -8,8 +8,8 @@
 # ad-hoc signed, not notarised, so the postflight clears the download quarantine and the
 # caveats say so.
 cask "otium" do
-  version "0.1.1"
-  sha256 "bec7e4993f05b2d77a9d6f140e1ad75630c883fd5b7fae945b5fc72b437aec74"
+  version "0.1.2"
+  sha256 "758643c2ea0a5d3a42023dfddf94dc009ff1e2c3a8fc781ad76e77b02b5e4234"
 
   url "https://github.com/NakliTechie/otium-releases/releases/download/v#{version}/Otium-macos.zip"
   name "Otium"
@@ -22,7 +22,9 @@ cask "otium" do
   end
 
   depends_on arch: :arm64
-  depends_on macos: :sonoma
+  depends_on formula: "container"
+  # Apple's container runs the office server's web search (SearXNG); it needs macOS 26.
+  depends_on macos: :tahoe
 
   app "Otium.app"
 
@@ -46,6 +48,8 @@ cask "otium" do
       xattr -dr com.apple.quarantine "#{appdir}/Otium.app"
 
     On first launch, choose: join your office, run the office server, or just chat.
+    On the office server, Otium runs web search (SearXNG) in Apple's container. If macOS
+    asks whether "container" may find devices on your local network, allow it.
     `brew uninstall --zap --cask otium` also removes the office data on this Mac,
     including an office server's certificate authority — back it up first.
   EOS
