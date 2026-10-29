@@ -8,10 +8,10 @@
 # ad-hoc signed, not notarised, so the postflight clears the download quarantine and the
 # caveats say so.
 cask "otium" do
-  version "0.1.5"
-  sha256 "52b8afada7f0fe39573b5ac4f792f0cb93648cfb81a0f49cc841e8abe7133d87"
+  version "0.1.6"
+  sha256 "1f30ef1fcba17c570d6f2ef106824729c882c35a84e4beb65e6deb5f145162ff"
 
-  url "https://github.com/atrium-solutions/otium-releases/releases/download/v0.1.5/Otium-macos.zip"
+  url "https://github.com/atrium-solutions/otium-releases/releases/download/v0.1.6/Otium-macos.zip"
   name "Otium"
   desc "Office AI chat served by your office's own idle Macs"
   homepage "https://github.com/atrium-solutions/otium-releases"
@@ -29,8 +29,9 @@ cask "otium" do
     run "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "{{appdir}}/Otium.app"]
   end
 
-  uninstall launchctl: "ai.otium.app",
-            quit:      "ai.otium.app"
+  uninstall launchctl: ["ai.otium.app", "ai.otium.check"],
+            quit:      "ai.otium.app",
+            delete:    "~/Library/LaunchAgents/ai.otium.check.plist"
 
   zap trash: [
     "~/.otium",
