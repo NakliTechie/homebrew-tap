@@ -13,7 +13,7 @@ cask "otium" do
 
   url "https://github.com/atrium-solutions/otium-releases/releases/download/v0.1.13/Otium-macos.zip"
   name "Otium"
-  desc "Office AI chat served by your office's own idle Macs"
+  desc "Office AI chat served by your office's own idle computers"
   homepage "https://github.com/atrium-solutions/otium-releases"
 
   livecheck do
