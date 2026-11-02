@@ -8,10 +8,10 @@
 # ad-hoc signed, not notarised, so the postflight clears the download quarantine and the
 # caveats say so.
 cask "otium" do
-  version "0.1.13"
-  sha256 "e817fb2bf6f5c368e9d6ebaa6ff0560123c1f1656260597f47487b45d79c0a37"
+  version "0.1.14"
+  sha256 "40b03a5c42ecfde71aaee64cd6978d33907e7788b9259881a9621b23df9e14c6"
 
-  url "https://github.com/atrium-solutions/otium-releases/releases/download/v0.1.13/Otium-macos.zip"
+  url "https://github.com/atrium-solutions/otium-releases/releases/download/v0.1.14/Otium-macos.zip"
   name "Otium"
   desc "Office AI chat served by your office's own idle computers"
   homepage "https://github.com/atrium-solutions/otium-releases"
@@ -22,6 +22,10 @@ cask "otium" do
   end
 
   depends_on arch: :arm64
+
+  # Otium updates itself from the office server once the admin approves a release, so
+  # `brew upgrade` leaves it alone (`brew upgrade --greedy` still updates it).
+  auto_updates true
 
   app "Otium.app"
 
