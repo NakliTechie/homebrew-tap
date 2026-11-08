@@ -8,10 +8,10 @@
 # ad-hoc signed, not notarised, so the postflight clears the download quarantine and the
 # caveats say so.
 cask "otium" do
-  version "0.1.17"
-  sha256 "57028c097a44b08a60b239c32e8f110b1c09cc5a652a8984580a0e23d49ad191"
+  version "0.1.18"
+  sha256 "435ae348abafcf3bdd67a10b9395babc38fa4b18629f9545a53a6ee0cbe411ba"
 
-  url "https://github.com/atrium-solutions/otium-releases/releases/download/v0.1.17/Otium-macos.zip"
+  url "https://github.com/atrium-solutions/otium-releases/releases/download/v0.1.18/Otium-macos.zip"
   name "Otium"
   desc "Office AI chat served by your office's own idle computers"
   homepage "https://github.com/atrium-solutions/otium-releases"
